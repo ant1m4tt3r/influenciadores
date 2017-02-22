@@ -1,15 +1,13 @@
 var express = require('express'),
 app = express(); 
 
-var events = require('events');
-var eventEmitter = new events.EventEmitter();
+// app.set('view engine','ejs');
 
-app.use('/', express.static(__dirname + '/'));
+// app.get('/', function(req, res) {
+//     res.render('index');
+// });
+
+app.use('/', express.static(__dirname + '/public'));
+
 app.listen(8080);
-
-console.log("listening on port: 8080")
-
-eventEmitter.on('search', function() {
-    document.alert(1);
-    console.log("oi")
-});
+console.log("listening on port: 8080");
