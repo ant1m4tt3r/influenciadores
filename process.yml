@@ -1,5 +1,5 @@
 apps:
-  - script   : node_server.js
+  - script   : app.js
     name: hugo
     instances: 1
     watch: true
