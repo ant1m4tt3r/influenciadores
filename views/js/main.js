@@ -7,9 +7,9 @@ $(document).ready(function () {
     });
 
     $("#search1").submit(function (event) {
-               var selecionado = $("#selector option:selected").text();
+        var selecionado = $("#selector option:selected").text();
         $('input[name="socialInput1"]').val(selecionado);
         return true;
     });
-    
+
 });

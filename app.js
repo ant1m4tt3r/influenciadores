@@ -38,24 +38,21 @@ var searchByName = function (res, nome, social) {
 
         var filter = {};
 
+        nome = ".*"+nome+".";
+
         if (social == "Todas") {
-            filter = { name: nome };
+            filter = { name: {$regex: nome, $options:"i"} };
         } else {
-            filter = { name: nome , socialnet: social };
+            filter = { name: {$regex: nome, $options:"i"} , socialnet: social };
         }
 
         if (nome == "") {
             filter = {};
         }
 
-        var options = {
-            "sort": ["followers", "asc"],
-            "limit": 20
-        }
-
         console.log(filter);
 
-        collection.find(filter, options).toArray(function (err, items) {
+        collection.find(filter).sort({followers: -1}).toArray(function (err, items) {
             if (err) {
                 console.dir(err);
                 res.render('index', { items: [] });
@@ -75,14 +72,45 @@ var searchByName = function (res, nome, social) {
 }
 
 var searchByCat = function (res, cat, social) {
-    // Connect to the db
+     // Connect to the db
     MongoClient.connect(uri, function (err, db) {
         if (err) { return console.dir(err); }
 
         var collection = db.collection('influenciadores');
-        var array = collection.find({ socialnet: cat }).toArray(function (err, items) { });
 
-        console.log("Categoria: " + cat);
+        var filter = {};
+
+        var categoria = [];
+
+        categoria[0] = cat;
+
+        if (social == "Todas") {
+            filter = { categorys: {$in: categoria} };
+        } else {
+            filter = { categorys: {$in: categoria} , socialnet: social };
+        }
+
+        if (cat == "") {
+            filter = {};
+        }
+
+        console.log(filter);
+
+        collection.find(filter).sort({followers: -1}).toArray(function (err, items) {
+            if (err) {
+                console.dir(err);
+                res.render('index', { items: [] });
+                return "";
+            }
+            if (items.length == 0) {
+                console.log("Sem resultados");
+                res.render('index', { items: [] });
+                return "";
+            }
+            console.log(items);
+            res.render('index', { items: items });
+            return "";
+        });
 
     })
 }
