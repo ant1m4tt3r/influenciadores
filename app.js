@@ -37,22 +37,28 @@ var searchByName = function (res, nome, social) {
         var collection = db.collection('influenciadores');
 
         var filter = {};
+        var filterNoRegex = {};
 
+        var noRegex= nome;
         nome = ".*"+nome+".";
+
 
         if (social == "Todas") {
             filter = { name: {$regex: nome, $options:"i"} };
+            filterNoRegex = { name: {$regex: noRegex, $options:"i"} };
         } else {
             filter = { name: {$regex: nome, $options:"i"} , socialnet: social };
+            filterNoRegex = { name: {$regex: noRegex, $options:"i"} , socialnet: social };
         }
 
         if (nome == "") {
             filter = {};
+            filterNoRegex = {};
         }
 
         console.log(filter);
 
-        collection.find(filter).sort({followers: -1}).toArray(function (err, items) {
+        collection.find({$or : [filter,filterNoRegex]}).sort({followers: -1}).toArray(function (err, items) {
             if (err) {
                 console.dir(err);
                 res.render('index', { items: [] });
