@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <title>Influenciadores</title>
+    <link rel='shortcut icon' href='favicon.ico' type='image/x-icon' />
+    <!-- jQuery -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- scripts -->
+    <script src="js/main.js"></script>
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 col-xs-12 no-padding">
+                    <div class="regular-space"></div>
+                    <div class="row">
+                        <p id="principal">
+                            Busca por Influenciadores
+                        </p>
+                    </div>
+                    <div class="regular-space"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="search-title">
+                                <p>Pesquisa por nome:</p>
+                            </div>
+                            <form action="search" class="search-form" id="search0">
+                                <div class="form-group has-feedback">
+                                    <label for="search" class="sr-only">Search1</label>
+                                    <input type="search" class="form-control" name="nome" id="searchbox1" placeholder="Pesquisar">
+                                    <input type="hidden" name="social" value="Todas">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="search-title">
+                                <p>Categoria:</p>
+                            </div>
+                            <form action="search" class="search-form" id="search1">
+                                <div class="form-group has-feedback">
+                                    <label for="search" class="sr-only">Search2</label>
+                                    <input type="search" class="form-control" name="categoria" id="searchbox2" placeholder="Pesquisar">
+                                    <input type="hidden" name="social" value="Todas">
+                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="search-title">
+                                <p>Rede social:</p>
+                            </div>
+                            <select class="selectpicker" id="selector">
+                              <option>Todas</option>
+                              <option>Facebook</option>
+                              <option>Twitter</option>
+                              <option>YouTube</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="data-table">
+                                <table>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Seguidores</th>
+                                        <th>Rede Social</th>
+                                        <th>Categorias</th>
+                                    </tr>
+                                    <% if (items.length) { %>
+                                        <% for (var i = 0; i < items.length; i++) { %>
+                                            <tr>
+                                                <td>
+                                                    <%= items[i].name %>
+                                                </td>
+                                                <td>
+                                                    <%= items[i].followers %>
+                                                </td>
+                                                <td>
+                                                    <%= items[i].socialnet %>
+                                                </td>
+                                                <td>
+                                                    <%= items[i].categorys %>
+                                                </td>
+                                                <td>
+                                                    <div class="img-container">
+                                                    <a href='<%=items[i].url %>' target="_blank">
+                                                        <img src="fonts/owl2.png" width="25px">
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                                <% } %>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

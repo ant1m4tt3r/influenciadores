@@ -1,0 +1,89 @@
+# Desafio Um
+
+# Data
+
+264h para uma solução trivial - entrega = 01/03/2017 23h no email milton@stilingue.com.br
+
+
+# Briefing
+
+O diretor de marketing de uma grande empresa precisa selecionar influenciadores na rede para uma camapanha digital no Brasil. A ideia é que ele consiga mensurar quais são os perfis com melhor custo benefício (rising stars) para acionar, a partir de diferentes filtros e métricas.
+
+
+## Problema
+
+Em outras palavras, o resultado desse desafio é uma grande lista de perfis que possa ser filtrada por diferentes características (ex: nacionalidade, categorias / assuntos) e que possa ser ranqueada por diferentes métricas de relevância (ex: quantidade de fãs). O foco neste caso é o Brasil, portanto saiba podar sua coleta de informação.
+
+
+## Exemplo de possíveis características de um perfil a serem estruturadas:
+
+{
+	profile : "@brunavieira",
+	socialnet : "twitter",
+	country : "Brasil",
+	category : ["Life Style"],
+	url : "https://twitter.com/brunavieira",
+	followers : 283000,
+	related : ["@depoisdosquinze", "@Mundo_Maquiagem"],
+	...
+}
+
+
+## Detalhamento
+
+Dividindo o problema em etapas, temos: exploração, modelagem do dataset, coleta + normalização dos atributos e a disponibilização da lista final. 
+
+### Exploração? 
+
+Comece por http://www.socialbakers.com/ e navegue por tudo. Procure também no google por possíveis listas de influenciadores do Instagram.
+
+Rabisque o que cada fonte tem em comum e planeje como será sua solução (será avaliado).
+
+### Modelagem? 
+
+Após a exploração, faça uma modelagem enxuta e inteligente dos dados a se coletar. Dica: Implemente no MongoDB, pela facilidade de prototipar, pesquisar e armazenar. Mas fique a vontade para utilizar um SGBD que tenha costume.
+
+### Coleta e Normalização?
+
+Escolha sua arma para coletar e extrair os dados. Entender a estrutura de cada site, extrair o HTML e parsear seus resultados. 
+
+Limpe os dados, normalize-os (ex: padronizar URLs, remover caracteres especiais, mapeie valores/textos para a língua portuguesa - MASSS mantenha o resultado CRU da coleta intacto e armazenado para não ter que recoletar depois). Quanto menos lixo, melhor.
+
+### Disponibilização? 
+
+Um link online, com um sistema mini de visualização dos dados coletados. (dica? heroku, google appengine, etc - tem sandbox e custo zero para o desafio).
+
+No pior dos casos, um link no gdrive de um .csv com o resultado final...
+
+### ETAPA EXTRA DO DESAFIO
+
+Coletar TODOS os perfis brasileiros do socialbakers. E conseguir linkar instagram desses perfis com o que tu coletar antes de outras redes.
+
+Ex: Linkar os perfis do Twitter e Instagram
+
+https://twitter.com/giseleofficial
+
+https://www.instagram.com/gisele
+
+
+# Recomendações gerais: 
+
+1) Preferência de linguagem: Java ou Python, nessa ordem
+
+2) Para extrair conteúdo de uma página web? jSoup@java e BeautifulSoup@python - existem vários exemplos simples e rápidos na internet.
+
+3) MongoChef para visualizar os dados no seu computador, se for utilizar MongoDB
+
+4) Google Appengine tem um datastore e já facilita o trabalho de colocar as coisas online
+
+5) Para começar qualquer problema, antes de planejar qualque execução: interprete o objetivo, faça pesquisas na internet, pergunte!
+
+
+
+# Considerações Finais
+
+Reforçando, exploração/modelagem, código-fonte, plano+execução e criatividade serão avaliados.
+
+Estamos completamente disponíveis para tirar dúvidas, ensinar sobre algo em específico, dar mais dicas... Portanto, vamos conversando!
+
+Boa sorte!
