@@ -18,6 +18,8 @@ app.use('/', express.static(__dirname + '/views'));
 
 app.get('/search', function (req, res) {
 
+    console.log(req.query['social']);
+
     if (req.query['nome']) {
         searchByName(res, req.query['nome'], req.query['social']);
     } else if (req.query['categoria']) {
@@ -56,7 +58,7 @@ var searchByName = function (res, nome, social) {
             filterNoRegex = {};
         }
 
-        console.log(filter);
+        console.log(filterNoRegex);
 
         collection.find({$or : [filter,filterNoRegex]}).sort({followers: -1}).toArray(function (err, items) {
             if (err) {
@@ -69,7 +71,6 @@ var searchByName = function (res, nome, social) {
                 res.render('index', { items: [] });
                 return "";
             }
-            console.log(items);
             res.render('index', { items: items });
             return "";
         });
@@ -113,7 +114,6 @@ var searchByCat = function (res, cat, social) {
                 res.render('index', { items: [] });
                 return "";
             }
-            console.log(items);
             res.render('index', { items: items });
             return "";
         });
